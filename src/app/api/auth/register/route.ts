@@ -68,8 +68,8 @@ export async function POST(request: NextRequest) {
     
     // 생성된 사용자 정보 조회
     const users = await prisma.$queryRaw`
-      SELECT id, email, name, bio, isAdmin, isApproved
-      FROM users 
+      SELECT id, email, name, bio, "isAdmin", "isApproved"
+      FROM "users" 
       WHERE id = ${userId}
     ` as Array<{
       id: string

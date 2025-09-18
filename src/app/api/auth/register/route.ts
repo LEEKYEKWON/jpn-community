@@ -48,9 +48,10 @@ export async function POST(request: NextRequest) {
     console.log('데이터베이스에 사용자 생성 시작') // 디버깅
     
     try {
+      // 기본값을 사용하기 위해 불리언 컬럼은 생략 ("isAdmin"=false, "isApproved"=true)
       await prisma.$executeRaw`
-        INSERT INTO "users" (id, email, name, password, "isAdmin", "isApproved", "createdAt", "updatedAt")
-        VALUES (${userId}, ${email}, ${name}, ${hashedPassword}, ${false}, ${true}, NOW(), NOW())
+        INSERT INTO "users" (id, email, name, password, "createdAt", "updatedAt")
+        VALUES (${userId}, ${email}, ${name}, ${hashedPassword}, NOW(), NOW())
       `
       console.log('필수 컬럼으로 사용자 생성 완료') // 디버깅
       

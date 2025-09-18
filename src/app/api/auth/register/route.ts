@@ -49,15 +49,15 @@ export async function POST(request: NextRequest) {
     
     try {
       await prisma.$executeRaw`
-        INSERT INTO users (id, email, name, password, isAdmin, isApproved, createdAt, updatedAt)
-        VALUES (${userId}, ${email}, ${name}, ${hashedPassword}, 0, 1, datetime('now'), datetime('now'))
+        INSERT INTO "users" (id, email, name, password, "isAdmin", "isApproved", "createdAt", "updatedAt")
+        VALUES (${userId}, ${email}, ${name}, ${hashedPassword}, ${false}, ${true}, NOW(), NOW())
       `
       console.log('필수 컬럼으로 사용자 생성 완료') // 디버깅
       
       // bio가 있으면 별도로 업데이트
       if (bio) {
         await prisma.$executeRaw`
-          UPDATE users SET bio = ${bio} WHERE id = ${userId}
+          UPDATE "users" SET bio = ${bio}, "updatedAt" = NOW() WHERE id = ${userId}
         `
         console.log('bio 업데이트 완료') // 디버깅
       }

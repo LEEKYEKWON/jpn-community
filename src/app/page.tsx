@@ -174,7 +174,7 @@ export default function Home() {
         setIsEditingProfile(false)
         setTempLocation(null)
         setShowRegisterForm(false)
-        setRegisterForm({ name: '', age: '', origin: '', bio: '' })
+        setRegisterForm({ name: '', birthDate: '', origin: '', bio: '' })
         fetchUsers() // 사용자 목록 새로고침
       } else {
         console.error('실패:', data.message) // 디버깅용
@@ -340,7 +340,7 @@ export default function Home() {
               </h2>
 
               {/* 자기소개 등록 버튼 */}
-              {!isRegistering && !user?.latitude && (
+              {!isRegistering && !user?.bio && (
                 <div className="absolute top-2 right-4 z-10">
                   <button
                     onClick={handleStartRegister}

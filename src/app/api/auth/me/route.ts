@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
 
     // SQL 직접 사용으로 스키마 문제 우회
     const users = await prisma.$queryRaw`
-      SELECT id, email, name, bio, birthDate, origin, latitude, longitude, address, isAdmin, isApproved
+      SELECT id, email, name, bio, "birthDate", origin, latitude, longitude, address, "isAdmin", "isApproved"
       FROM users 
       WHERE id = ${userId}
     ` as Array<{

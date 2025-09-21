@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma'
 
 export async function POST(request: NextRequest) {
   try {
-    const { latitude, longitude, address, userId, bio, birthDate, origin } = await request.json()
+    const { latitude, longitude, address, userId, bio, age, origin } = await request.json()
     
     console.log('받은 데이터:', { latitude, longitude, address, userId, bio }) // 디버깅용
 
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
         SET latitude = ${latitude}, longitude = ${longitude}, address = ${address}
         WHERE id = ${userId}
       `
-    } else if (bio !== undefined || birthDate !== undefined || origin !== undefined) {
+    } else if (bio !== undefined || age !== undefined || origin !== undefined) {
       const updates = []
       const values = []
       
@@ -32,9 +32,9 @@ export async function POST(request: NextRequest) {
         updates.push('bio = ?')
         values.push(bio)
       }
-      if (birthDate !== undefined) {
-        updates.push('"birthDate" = ?')
-        values.push(birthDate)
+      if (age !== undefined) {
+        updates.push('age = ?')
+        values.push(age)
       }
       if (origin !== undefined) {
         updates.push('origin = ?')
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     
     // 업데이트된 사용자 정보 조회
     const fullUser = await prisma.$queryRaw`
-      SELECT id, email, name, bio, "birthDate", origin, latitude, longitude, address, isAdmin, isApproved
+      SELECT id, email, name, bio, age, origin, latitude, longitude, address, isAdmin, isApproved
       FROM users 
       WHERE id = ${userId}
     ` as Array<{
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
       email: string
       name: string
       bio: string
-      birthDate: string
+      age: string
       origin: string
       latitude: number
       longitude: number

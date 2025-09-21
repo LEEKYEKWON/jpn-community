@@ -34,7 +34,7 @@ export default function Home() {
   const [isEditingProfile, setIsEditingProfile] = useState(false) // 프로필 변경
   const [registerForm, setRegisterForm] = useState({
     name: '',
-    birthDate: '',
+    age: '',
     origin: '',
     bio: ''
   })
@@ -137,7 +137,7 @@ export default function Home() {
         userId: user.id,
         bio: registerForm.bio,
         name: registerForm.name,
-        birthDate: registerForm.birthDate,
+        age: registerForm.age,
         origin: registerForm.origin
       }
 
@@ -441,8 +441,8 @@ export default function Home() {
                       </label>
                       <input
                         type="date"
-                        value={registerForm.birthDate}
-                        onChange={(e) => setRegisterForm({...registerForm, birthDate: e.target.value})}
+                        value={registerForm.age}
+                        onChange={(e) => setRegisterForm({...registerForm, age: e.target.value})}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-pink-500 focus:border-pink-500"
                         placeholder="生年月日を選択してください"
                       />

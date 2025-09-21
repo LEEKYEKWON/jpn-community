@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     
     // 업데이트된 사용자 정보 조회
     const fullUser = await prisma.$queryRaw`
-      SELECT id, email, name, bio, "birthDate", origin, latitude, longitude, address, isAdmin, isApproved
+      SELECT id, email, name, bio, "birthDate", origin, latitude, longitude, address, "isAdmin", "isApproved"
       FROM users 
       WHERE id = ${userId}
     ` as Array<{

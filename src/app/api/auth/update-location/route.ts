@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
         values.push(bio)
       }
       if (birthDate !== undefined) {
-        updates.push('birthdate = ?')
+        updates.push('"birthDate" = ?')
         values.push(birthDate)
       }
       if (origin !== undefined) {
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     
     // 업데이트된 사용자 정보 조회
     const fullUser = await prisma.$queryRaw`
-      SELECT id, email, name, bio, birthdate, origin, latitude, longitude, address, isAdmin, isApproved
+      SELECT id, email, name, bio, "birthDate", origin, latitude, longitude, address, isAdmin, isApproved
       FROM users 
       WHERE id = ${userId}
     ` as Array<{
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
       email: string
       name: string
       bio: string
-      birthdate: string
+      birthDate: string
       origin: string
       latitude: number
       longitude: number

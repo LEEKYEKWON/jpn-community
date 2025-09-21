@@ -5,7 +5,7 @@ export async function GET() {
   try {
     // SQL 직접 사용으로 안정성 확보
     const users = await prisma.$queryRaw`
-      SELECT id, name, bio, birthdate, origin, latitude, longitude, address
+      SELECT id, name, bio, "birthDate", origin, latitude, longitude, address
       FROM users 
       WHERE isApproved = 1 
       AND latitude IS NOT NULL 
@@ -15,7 +15,7 @@ export async function GET() {
       id: string
       name: string
       bio: string | null
-      birthdate: string | null
+      birthDate: string | null
       origin: string | null
       latitude: number
       longitude: number

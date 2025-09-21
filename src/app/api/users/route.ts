@@ -10,7 +10,7 @@ export async function GET() {
       WHERE "isApproved" = true 
       AND latitude IS NOT NULL 
       AND longitude IS NOT NULL
-      ORDER BY createdAt DESC
+      ORDER BY "createdAt" DESC
     ` as Array<{
       id: string
       name: string

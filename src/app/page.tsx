@@ -178,7 +178,7 @@ export default function Home() {
         fetchUsers() // 사용자 목록 새로고침
       } else {
         console.error('실패:', data.message) // 디버깅용
-        alert(`${isEditingProfile ? 'プロフィール変更' : '登録'}に失패했습니다: ${data.message || '알 수 없는 오류'}`)
+        alert(`${isEditingProfile ? 'プロフィール変更' : '登録'}に失敗しました: ${data.message || '알 수 없는 오류'}`)
       }
     } catch (error) {
       console.error('오류:', error) // 디버깅용
